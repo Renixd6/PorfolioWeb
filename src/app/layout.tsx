@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Cursor from "./components/Cursor"; 
+import ScrollBar from "./components/ScrollBar"; 
 
 export default function RootLayout({
   children,
@@ -10,9 +11,8 @@ export default function RootLayout({
       <head>
       </head>
       <body className="antialiased">
-        {/* Coloca el componente de CursorAura aquí */}
         <Cursor />
-        
+        <ScrollBar />
         <Navbar />
         {children}
       </body>

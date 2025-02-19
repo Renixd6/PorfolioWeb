@@ -1,17 +1,17 @@
-"use client"; 
+"use client";
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-import { useTranslation } from "react-i18next"; 
-import Button from "./components/Button"; 
+import { useTranslation } from "react-i18next";
+import Button from "./components/Button";
 
-import '../../i18n'; 
+import '../../i18n';
 
 export default function Home() {
   const [animationState, setAnimationState] = useState({
     scale: 1,
     rotate: 0,
-    backgroundColor: "#0000ff",
+    backgroundColor: "#101c34",
     xPositionTop: 0,
     xPositionBottom: 0,
   });
@@ -19,21 +19,21 @@ export default function Home() {
 
   const [touchStart, setTouchStart] = useState(0);
 
-  const handleScroll = (event: WheelEvent) => {  
+  const handleScroll = (event: WheelEvent) => {
     const deltaY = event.deltaY ?? 0;
     if (deltaY > 0) {
       setAnimationState({
-        scale: 1.05,
+        scale: 1.1,
         rotate: 2,
         backgroundColor: "#ff007f",
-        xPositionTop: 8,
-        xPositionBottom: -6,
+        xPositionTop: 5,
+        xPositionBottom: -5,
       });
     } else {
       setAnimationState({
         scale: 1,
         rotate: 0,
-        backgroundColor: "#0000ff",
+        backgroundColor: "#101c34",
         xPositionTop: 0,
         xPositionBottom: 0,
       });
@@ -45,17 +45,17 @@ export default function Home() {
     const touchDelta = touchStart - touchEnd;
     if (touchDelta > 0) {
       setAnimationState({
-        scale: 1.05,
-        rotate: 2,
+        scale: 1.1,
+        rotate: 5,
         backgroundColor: "#ff007f",
-        xPositionTop: 8,
-        xPositionBottom: -6,
+        xPositionTop: 10,
+        xPositionBottom: -10,
       });
     } else if (touchDelta < 0) {
       setAnimationState({
         scale: 1,
         rotate: 0,
-        backgroundColor: "#0000ff",
+        backgroundColor: "#101c34",
         xPositionTop: 0,
         xPositionBottom: 0,
       });
@@ -65,10 +65,9 @@ export default function Home() {
   const handleTouchStart = (event: TouchEvent) => {
     setTouchStart(event.touches[0].clientY);
   };
-  
 
   useEffect(() => {
-    window.addEventListener("wheel", handleScroll as EventListener);  
+    window.addEventListener("wheel", handleScroll as EventListener);
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
     window.addEventListener("touchmove", handleTouchMove, { passive: true });
 
@@ -77,48 +76,80 @@ export default function Home() {
       window.removeEventListener("touchstart", handleTouchStart);
       window.removeEventListener("touchmove", handleTouchMove);
     };
-  }, [touchStart]); 
+  }, [touchStart]);
 
   return (
-    <main> 
-      <div className="hidden md:block w-[300px] h-[300px]"></div>
-
-      <div className="flex flex-col justify-start items-start h-screen gap-4 pt-44 sm:pt-44 md:pt-44 lg:pt- px-8 sm:px-12 md:px-16 lg:px-72">
-        <p className="text-lg text-[#c6d21e]">{t('hello')}</p>  
-        <h1 className="text-3xl text-white lg:text-6xl xl:text-7xl">{t('name')}</h1>  
-        <h2 className="text-2xl lg:text-4xl xl:text-5xl">{t('ido')}</h2> 
-        <p className="text-lg mt-2 max-w-xl">{t('srtdesc')}</p>  {/* Aquí se establece el ancho máximo */}
-        <div className="pt-4"><Button /> </div>  
-      </div>
-
-      <div className="flex flex-col justify-center items-center h-screen gap-12"> 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.5, rotate: 80 }}
-          animate={{ opacity: 1, scale: animationState.scale, rotate: animationState.rotate, backgroundColor: animationState.backgroundColor, x: animationState.xPositionTop }}
-          transition={{
-            duration: 1.8,
-            ease: "easeOut",
-            backgroundColor: { duration: 1, ease: "easeInOut" },  
-          }}
-          className="w-[80vw] h-[60vw] sm:w-[80vw] sm:h-[50vw] md:w-[70vw] md:h-[45vw] lg:w-[60vw] lg:h-[40vw] bg-blue-500 text-white flex justify-center items-center text-3xl font-bold rounded-2xl shadow-xl"
+    <main>
+      <div className="flex flex-col justify-center items-start min-h-screen gap-4 px-8 sm:px-12 md:px-16 lg:px-72">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-lg text-[#c6d21e]"
         >
-          {t('greeting')}
+          {t('hello')}
+        </motion.p>
+  
+        <motion.h1
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="text-3xl text-white lg:text-6xl xl:text-7xl"
+        >
+          {t('name')}
+        </motion.h1>
+  
+        <motion.h2
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="text-2xl lg:text-4xl xl:text-5xl"
+        >
+          {t('ido')}
+        </motion.h2>
+  
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="text-lg mt-2 max-w-xl"
+        >
+          {t('srtdesc')}
+        </motion.p>
+  
+        <div className="pt-4"></div>
+  
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1 }}
+        >
+          <Button />
         </motion.div>
-
+      </div>
+  
+      <div className="flex flex-col justify-center items-center gap-12 pt-2 pb-8">
         <motion.div
-          initial={{ opacity: 0, scale: 0.5, rotate: 80 }}
-          animate={{ opacity: 1, scale: animationState.scale, rotate: animationState.rotate, backgroundColor: animationState.backgroundColor, x: animationState.xPositionBottom }} 
+          initial={{ opacity: 0, scale: 0.8, rotate: 80 }}
+          animate={{
+            opacity: 1,
+            scale: animationState.scale * 1.1,
+            rotate: animationState.rotate,
+            backgroundColor: animationState.backgroundColor,
+            x: animationState.xPositionTop,
+          }}
           transition={{
             duration: 1.8,
-            ease: "easeOut",
-            backgroundColor: { duration: 1, ease: "easeInOut" },  
+            ease: 'easeOut',
+            backgroundColor: { duration: 1, ease: 'easeInOut' },
           }}
-          className="w-[80vw] h-[60vw] sm:w-[80vw] sm:h-[50vw] md:w-[70vw] md:h-[45vw] lg:w-[60vw] lg:h-[40vw] bg-blue-500 text-white flex justify-center items-center text-3xl font-bold rounded-2xl shadow-xl"
+          className="w-[70%] h-[50vh] min-h-[300px] max-h-[600px] text-white flex justify-center items-center text-3xl font-bold rounded-2xl shadow-xl"
         >
-          {t('greeting')}
+          {t('about')}
         </motion.div>
       </div>
       <div className="h-80"></div>
     </main>
   );
+  
 }
