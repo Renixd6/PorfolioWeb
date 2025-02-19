@@ -1,14 +1,20 @@
 import "./globals.css";
-import Navbar from "./components/Navbar";  
+import Navbar from "./components/Navbar";
+import Cursor from "./components/Cursor"; 
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
+      <head>
+      </head>
       <body className="antialiased">
-        <Navbar /> {/* Barra de navegación aquí */}
-        {children}  {/* El contenido de cada página */}
+        {/* Coloca el componente de CursorAura aquí */}
+        <Cursor />
+        
+        <Navbar />
+        {children}
       </body>
     </html>
   );

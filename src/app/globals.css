@@ -3,14 +3,41 @@
 @tailwind utilities;
 
 body {
-  @apply bg-gray-900 text-white dark:bg-gray-900 dark:text-white;
+  @apply bg-[#0a192f] text-[#F8FADC] dark:bg-[#0a192f] dark:text-[#F8FADC]; 
+  font-family: 'Roboto', sans-serif; 
 }
 
 
 nav {
-  @apply bg-gray-900 bg-opacity-80 backdrop-blur-md;
+  @apply bg-[#0a192f] bg-opacity-80 backdrop-blur-md;
   position: sticky;
   top: 0; 
   z-index: 1000; 
 }
 
+.text-justify {
+  text-align: justify;
+  hyphens: auto; 
+}
+
+.text-justify {
+  line-height: 1.5; 
+  letter-spacing: 0.5px; 
+}
+
+h2 {
+  letter-spacing: 0.2px;  
+}
+
+/* CSS para el aura del cursor */
+.cursor-aura {
+  position: fixed;
+  pointer-events: none; /* Evitar que interrumpa el clic */
+  width: 50px; /* Tamaño del aura */
+  height: 50px; /* Tamaño del aura */
+  border-radius: 50%; /* Forma circular */
+  background-color: rgba(255, 255, 255, 0.5); /* Color del aura */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7); /* Efecto de resplandor */
+  transform: translate(-50%, -50%); /* Centrado del aura */
+  transition: width 0.1s, height 0.1s, box-shadow 0.1s; /* Transiciones suaves */
+}

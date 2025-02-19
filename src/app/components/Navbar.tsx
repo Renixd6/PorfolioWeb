@@ -47,7 +47,8 @@ export default function Navbar() {
         }
     };
 
-    const changeLanguage = (lng: string) => {
+    const changeLanguage = (lng: string, e: React.MouseEvent) => {
+        e.preventDefault(); // Prevenir recarga de página
         i18n.changeLanguage(lng); 
         setIsDropdownOpen(false); 
         if (buttonRef.current) {
@@ -116,11 +117,10 @@ export default function Navbar() {
                     >
                         <ul className="py-2 font-medium" role="none">
                             <li>
-                                <a
-                                    href=""
+                                <button
+                                    onClick={(e) => changeLanguage('en', e)} 
                                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                                     role="menuitem"
-                                    onClick={() => changeLanguage('en')} 
                                 >
                                     <div className="inline-flex items-center">
                                         <svg
@@ -136,14 +136,13 @@ export default function Navbar() {
                                         </svg>
                                         English (US)
                                     </div>
-                                </a>
+                                </button>
                             </li>
                             <li>
-                                <a
-                                    href=""
+                                <button
+                                    onClick={(e) => changeLanguage('es', e)} 
                                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
                                     role="menuitem"
-                                    onClick={() => changeLanguage('es')} 
                                 >
                                     <div className="inline-flex items-center">
                                         <svg
@@ -157,7 +156,7 @@ export default function Navbar() {
                                         </svg>
                                         Español (ES)
                                     </div>
-                                </a>
+                                </button>
                             </li>
                         </ul>
                     </div>
